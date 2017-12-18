@@ -6,10 +6,6 @@ public class MandelBrot {
 
 	public MandelBrot(MandelRequest mandelRequest) {
 		this.mandelRequest = mandelRequest;
-		
-		
-		
-		
     	mandelSingleThreaded();
 	}
 	

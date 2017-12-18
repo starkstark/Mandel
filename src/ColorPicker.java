@@ -21,16 +21,34 @@ public class ColorPicker {
 		this.minIteration = minIteration;
 	}
 
-	public int convertToGreyscale(int iteration) {
-		double result = ((double) iteration - (double) this.minIteration) / (double) this.maxIteration;
-		int colorValue = Math.round((float)(result * 0xff));	
-		return colorValue * 0x00010000 + colorValue * 0x00000100 + colorValue * 0x00000001;
-	}
-
-	public int[] convertToGreyscleAll() {
+	public int[] convertToGreyscle() {
 		int[] colors = new int[this.iterations.length];
 		for(int i = 0; i < this.iterations.length; i++) {
-			colors[i] = convertToGreyscale(this.iterations[i]);
+			int iter = this.iterations[i];
+			double result = ((double) iter - (double) this.minIteration) / (double) this.maxIteration;
+			int colorValue = Math.round((float)(result * 0xff));	
+			colors[i] = colorValue * 0x00010000 + colorValue * 0x00000100 + colorValue * 0x00000001;
+		}
+		return colors;
+	}
+	
+	public int[] convertToRainbow() {
+		int[] colors = new int[this.iterations.length];
+		for(int i = 0; i < this.iterations.length; i++) {
+			int iter  = this.iterations[i];
+			if(iter == 0) {
+				colors[i] = 0x00ffffff;
+				continue;
+			} if (iter <= 0x000000ff) {
+				colors[i] = iter % 0xff * 0x00000010;
+			} if (iter <= 0x0000ff00) {
+				colors[i] += iter % 0xff * 0x00000100;
+			} if (iter <= 0x000000ff) {
+				colors[i] += iter % 0xff * 0x00010000;
+			} else {
+				colors[i] = 0x00000000;
+				continue;
+			}
 		}
 		return colors;
 	}

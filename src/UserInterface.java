@@ -125,7 +125,7 @@ public class UserInterface {
 
     	this.image.setRGB(
     		0, 0, requestSave.width, requestSave.height,
-    		colorPicker.convertToGreyscleAll(), 0, requestSave.width);
+    		colorPicker.convertToRainbow(), 0, requestSave.width);
     	
     	this.jLabel.setIcon(new ImageIcon(this.image));
 
