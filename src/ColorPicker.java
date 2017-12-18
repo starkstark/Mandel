@@ -35,20 +35,34 @@ public class ColorPicker {
 	public int[] convertToRainbow() {
 		int[] colors = new int[this.iterations.length];
 		for(int i = 0; i < this.iterations.length; i++) {
-			int iter  = this.iterations[i];
-			if(iter == 0) {
+			int iter = this.iterations[i];
+			if(iter <= 0) {
 				colors[i] = 0x00ffffff;
 				continue;
-			} if (iter <= 0x000000ff) {
-				colors[i] = iter % 0xff * 0x00000010;
-			} if (iter <= 0x0000ff00) {
-				colors[i] += iter % 0xff * 0x00000100;
-			} if (iter <= 0x000000ff) {
-				colors[i] += iter % 0xff * 0x00010000;
-			} else {
+			}
+			if(iter >= this.maxIteration) {
 				colors[i] = 0x00000000;
 				continue;
+			}	
+			double scale = (double) (iter - this.minIteration) / (double) this.maxIteration;
+			if (scale > (double) 1.0 / 3.0) {
+				colors[i] = (int) Math.round(scale * 3.0 * 0x00000001);
+				
+			} if (iter > (double) 2.0 / 3.0) {
+				colors[i] += (int) Math.round(scale * 1.5 * 0x00000100);
 			}
+			
+			colors[i] += (int) Math.round(scale * 1.5 * 0x00010000);
+		}
+		return colors;
+	}
+	
+	//TODO
+	public int[] convertGolden() {
+		int[] colors = new int[this.iterations.length];
+		for(int i = 0; i < this.iterations.length; i++) {
+			double gradient = 1.0 - (double) (this.iterations[i] - this.minIteration) / (double) this.maxIteration;
+			colors[i] = (int) Math.floor(gradient * 0x00ffd700);
 		}
 		return colors;
 	}
