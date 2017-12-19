@@ -20,16 +20,6 @@ public class MandelRequest {
 		this.xCenter -= x / (double) this.width  * 3.5 * this.scale - 1.75 * this.scale;
 		this.yCenter += y / (double) this.height * 2.0 * this.scale - 1.0  * this.scale;		
 	}
-	
-	/*
-	public double getX(int x) {
-		return ((x / (double) this.width) * 3.5 - this.xCenter) * this.scale ;	
-	}
-	
-	public double getY(int y) {
-		return ((y / (double) this.height) * 2.0 - this.yCenter) * this.scale;		
-	}
-	*/
 
 	public double getX(int x) {
 		return x / (double) this.width * 3.5 * this.scale - 1.75 * this.scale - this.xCenter;
