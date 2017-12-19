@@ -123,7 +123,7 @@ public class UserInterface {
 			menu.add(menuItemQuit);
 
 			jMenuBar.add(new JLabel(" |  Maximal iterations "));
-			JTextField textField = new JTextField();
+			JTextField textField = new JTextField(5);
 			textField.setText("" + request.maxIterations);
 			textField.addActionListener(new ActionListener() {
 			    public void actionPerformed(ActionEvent e) {
@@ -137,6 +137,7 @@ public class UserInterface {
 			        updateImage();
 			    }
 			});
+			jMenuBar.add(textField);
 		}
 		
 		JMenuBar getMenuBar() {
