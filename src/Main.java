@@ -17,7 +17,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 class Main {
-    public static void main(String s[]) {
-    	new UserInterface();
-    }    
+	public static void main(String s[]) {
+		new UserInterface();
+	}
 }
